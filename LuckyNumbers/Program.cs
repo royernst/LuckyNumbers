@@ -13,7 +13,6 @@ namespace LuckyNumbers
             int highRange = 0;
             int lowRange = 0;
             int[] guessedNums = new int[6];
-            int arrayCount = 0;
             
 
             Console.WriteLine("Booting LuckyNumbers.exe...");
@@ -25,28 +24,44 @@ namespace LuckyNumbers
             lowRange = int.Parse(Console.ReadLine());
             Console.Write("High range: ");
             highRange = int.Parse(Console.ReadLine());
-            for (int i = 1; i <= 6; i++)
+            Console.WriteLine();
+            for (int i = 0; i < 6; i++)
             {
-                Console.Write("\nPlease enter a guess between your number ranges: ");
-                guessedNums[arrayCount] = int.Parse(Console.ReadLine());
-                while (guessedNums[arrayCount] < lowRange || guessedNums[arrayCount] > highRange)
+                Console.Write("Please enter a guess between your number ranges: ");
+                guessedNums[i] = int.Parse(Console.ReadLine());
+                while (guessedNums[i] < lowRange || guessedNums[i] > highRange)
                 {
                     Console.WriteLine("That entry is incorrect");
                     Console.Write("Please enter a valid number: ");
-                    guessedNums[arrayCount] = int.Parse(Console.ReadLine());
+                    guessedNums[i] = int.Parse(Console.ReadLine());
 
                 } 
-                arrayCount++;
+                
             }
-            
+            int[] randArray = RandNum(lowRange, highRange, guessedNums.Length);
+
+            Console.WriteLine("Here are today's lucky numbers:");
+            for (int i = 0; i < randArray.Length; i++)
+            {
+                Console.WriteLine(randArray[i]);
+            }
         }
 
         public static int[] RandNum(int lowValue, int highValue, int arraySize)
         {
             Random randGen = new Random();
             int[] array = new int[arraySize];
-
-            randGen.Next(lowValue, (highValue + 1));
+            for (int i = 0; i < arraySize; i++)
+            {
+                array[i] = randGen.Next(lowValue, (highValue + 1));
+                //while (array.Contains (array[i]) && i != 0)
+                //{
+                //    array[i] = randGen.Next(lowValue, (highValue + 1)); 
+                //}
+                           
+            }
+            return array;
+            
 
         }
     }
