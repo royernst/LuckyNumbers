@@ -23,12 +23,14 @@ namespace LuckyNumbers
             {
                 Console.WriteLine("\nIf you are able to guess all 6 numbers, you will win the jackpot!!");
                 Console.WriteLine("Current jackpot: $10,312,494");
-                Console.WriteLine("You can still win great prizes if you guess between 1 and 5 numbers correctly!");
+                Console.WriteLine("\nYou can still win a percentage of the jackpot if you guess between.");
+                Console.WriteLine("1 and 5 numbers correctly!");
                 Console.WriteLine("\nPlease enter 2 numbers that you would like to set as your range.");
                 Console.Write("Low range: ");
                 lowRange = int.Parse(Console.ReadLine());
                 Console.Write("High range: ");
                 highRange = int.Parse(Console.ReadLine());
+                Console.WriteLine("\nNow, please guess 6 numbers within your ranges.");
                 Console.WriteLine();
                 for (int i = 0; i < 6; i++)
                 {
@@ -45,7 +47,7 @@ namespace LuckyNumbers
                 }
                 int[] randArray = RandNum(lowRange, highRange, guessedNums.Length);
 
-                Console.WriteLine("Here are today's lucky numbers:");
+                Console.WriteLine("\nHere are today's lucky numbers:");
                 for (int i = 0; i < randArray.Length; i++)
                 {
                     Console.WriteLine(randArray[i]);
@@ -59,11 +61,11 @@ namespace LuckyNumbers
                     }
                 }
 
-                Console.WriteLine("You guessed {0} numbers correctly!", numCorrect);
-                Console.WriteLine("You won $" + Math.Round(Winnings(jackpot, numCorrect), 2));
-                Console.Write("Would you like to play again? (YES/NO)");
+                Console.WriteLine("\nYou guessed {0} numbers correctly!", numCorrect);
+                Console.WriteLine("\nYou won $" + Math.Round(Winnings(jackpot, numCorrect), 2));
+                Console.Write("\nWould you like to play again? (YES/NO)");
                 answer = Console.ReadLine().Trim().ToLower();
-
+                numCorrect = 0;
             } while (answer == "yes");
             Console.WriteLine("Thanks for playing!");
         }
